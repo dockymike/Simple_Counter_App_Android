@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Required Permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
@@ -14,6 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Counter_App"
         tools:targetApi="31">
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

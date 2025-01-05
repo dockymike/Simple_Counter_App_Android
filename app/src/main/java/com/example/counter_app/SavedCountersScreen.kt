@@ -24,7 +24,7 @@ fun SavedCountersScreen(
             .background(Color(0xFFF5F5F5))
     ) {
         // Top Banner Ad
-        AdBanner(adUnitId = "ca-app-pub-3940256099942544/6300978111")
+        AdBanner(adUnitId = "ca-app-pub-2728273617584298/3431073612")
 
         Column(
             modifier = Modifier
@@ -97,6 +97,6 @@ fun SavedCountersScreen(
         }
 
         // Bottom Banner Ad
-        AdBanner(adUnitId = "ca-app-pub-3940256099942544/6300978111")
+        AdBanner(adUnitId = "ca-app-pub-2728273617584298/3431073612")
     }
 }

@@ -42,6 +42,12 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 
+import android.util.Log
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.LoadAdError
+
+
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -108,14 +114,26 @@ fun AdBanner(adUnitId: String) {
     AndroidView(
         factory = { ctx ->
             AdView(ctx).apply {
-                setAdSize(AdSize.BANNER)
+                setAdSize(AdSize.BANNER) // Keeping your original setAdSize
                 this.adUnitId = adUnitId
                 loadAd(AdRequest.Builder().build())
+                adListener = object : AdListener() {
+                    override fun onAdFailedToLoad(adError: LoadAdError) {
+                        Log.e("AdBanner", "Ad failed to load: ${adError.message}")
+                    }
+
+                    override fun onAdLoaded() {
+                        Log.d("AdBanner", "Ad loaded successfully.")
+                    }
+                }
             }
         },
         modifier = Modifier.fillMaxWidth()
     )
 }
+
+
+
 
 @Composable
 fun HomeScreen(navController: NavHostController) {
@@ -125,7 +143,7 @@ fun HomeScreen(navController: NavHostController) {
             .background(Color.White)
     ) {
         // Top Banner Ad
-        AdBanner(adUnitId = "ca-app-pub-3940256099942544/6300978111")
+        AdBanner(adUnitId = "ca-app-pub-2728273617584298/3431073612")
 
         Box(
             modifier = Modifier
@@ -164,7 +182,7 @@ fun HomeScreen(navController: NavHostController) {
         }
 
         // Bottom Banner Ad
-        AdBanner(adUnitId = "ca-app-pub-3940256099942544/6300978111")
+        AdBanner(adUnitId = "ca-app-pub-2728273617584298/3431073612")
     }
 }
 
@@ -191,7 +209,7 @@ fun SettingsScreen(
             verticalArrangement = Arrangement.SpaceBetween
         ) {
             // Top Banner Ad
-            AdBanner(adUnitId = "ca-app-pub-3940256099942544/6300978111")
+            AdBanner(adUnitId = "ca-app-pub-2728273617584298/3431073612")
 
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -259,7 +277,7 @@ fun SettingsScreen(
                 .align(Alignment.BottomCenter)
                 .fillMaxWidth()
         ) {
-            AdBanner(adUnitId = "ca-app-pub-3940256099942544/6300978111")
+            AdBanner(adUnitId = "ca-app-pub-2728273617584298/3431073612")
         }
     }
 }
@@ -316,7 +334,7 @@ fun CounterScreen(
                 .padding(bottom = 56.dp) // Reserve space for the bottom ad
         ) {
             // Top Banner Ad
-            AdBanner(adUnitId = "ca-app-pub-3940256099942544/6300978111")
+            AdBanner(adUnitId = "ca-app-pub-2728273617584298/3431073612")
 
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -445,7 +463,7 @@ fun CounterScreen(
                 .align(Alignment.BottomCenter)
                 .fillMaxWidth()
         ) {
-            AdBanner(adUnitId = "ca-app-pub-3940256099942544/6300978111")
+            AdBanner(adUnitId = "ca-app-pub-2728273617584298/3431073612")
         }
     }
 }
